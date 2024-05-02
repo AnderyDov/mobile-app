@@ -1,4 +1,4 @@
-export default palete = {
+export const Colors = {
 	black: '#16171D',
 	white: '#FAFAFA',
 	red: '#CC384E',
@@ -12,4 +12,13 @@ export default palete = {
 	grey: '#AFB2BF',
 	grey_stroke: '#4D5064',
 	grey_light: '#DAD9DE',
+};
+
+export const Gaps = {
+	g16: 16,
+	g50: 50,
+};
+
+export const Radius = {
+	r10: 10,
 };

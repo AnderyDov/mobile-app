@@ -1,6 +1,6 @@
 import { Button, Text, View, Image, StyleSheet } from 'react-native';
 import { Input } from './shared';
-import palette from './palette';
+import { Colors, Gaps } from './shared';
 
 export default function App() {
 	return (
@@ -22,26 +22,26 @@ const styles = StyleSheet.create({
 	container: {
 		justifyContent: 'center',
 		flexGrow: 1,
-		backgroundColor: '#000000',
+		backgroundColor: Colors.violet_dark,
 		padding: 55,
 	},
 
 	content: {
-		gap: 50,
+		gap: Gaps.g50,
 		alignItems: 'center',
 	},
 	logo: {
 		width: 220,
 	},
 	form: {
-		gap: 16,
+		gap: Gaps.g16,
 		alignSelf: 'stretch',
 	},
 	input: {
-		backgroundColor: palette.grey_stroke,
+		backgroundColor: Colors.grey_stroke,
 	},
 
 	link: {
-		color: palette.white,
+		color: Colors.white,
 	},
 });
