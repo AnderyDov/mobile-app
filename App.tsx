@@ -8,8 +8,8 @@ export default function App() {
 			<View style={styles.content}>
 				<Image style={styles.logo} source={require('./assets/logo.png')} resizeMode="contain" />
 				<View style={styles.form}>
-					<Input />
-					<Input />
+					<Input placeholder="email" />
+					<Input placeholder="password" />
 					<Button title="Войти" />
 				</View>
 				<Text style={styles.link}>Восстановить пароль</Text>
