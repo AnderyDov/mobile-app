@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
-export const EyeOpen = (props: SvgProps) => (
-	<Svg width={24} height={24} fill="none" {...props}>
+export const EyeOpen = () => (
+	<Svg width={24} height={24} fill="none">
 		<Path
 			fill="#AFB2BF"
 			fillRule="evenodd"

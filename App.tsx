@@ -1,7 +1,6 @@
-import { Button, Text, View, Image, StyleSheet } from 'react-native';
-import { Input } from './shared';
+import { Text, View, Image, StyleSheet } from 'react-native';
+import { Input, Button } from './shared';
 import { Colors, Gaps } from './shared';
-import { EyeOpen, EyeClosed } from './assets/icons';
 
 export default function App() {
 	return (
@@ -9,13 +8,11 @@ export default function App() {
 			<View style={styles.content}>
 				<Image style={styles.logo} source={require('./assets/logo.png')} resizeMode="contain" />
 				<View style={styles.form}>
-					<Input placeholder="email" />
-					<Input placeholder="password" />
-					<Button title="Войти" />
+					<Input placeholder="email" isPassword={false} />
+					<Input placeholder="password" isPassword={true} />
+					<Button text="Войти" />
 				</View>
 				<Text style={styles.link}>Восстановить пароль</Text>
-				<EyeClosed />
-				<EyeOpen />
 			</View>
 		</View>
 	);
