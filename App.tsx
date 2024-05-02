@@ -1,6 +1,7 @@
 import { Button, Text, View, Image, StyleSheet } from 'react-native';
 import { Input } from './shared';
 import { Colors, Gaps } from './shared';
+import { EyeOpen, EyeClosed } from './assets/icons';
 
 export default function App() {
 	return (
@@ -13,6 +14,8 @@ export default function App() {
 					<Button title="Войти" />
 				</View>
 				<Text style={styles.link}>Восстановить пароль</Text>
+				<EyeClosed />
+				<EyeOpen />
 			</View>
 		</View>
 	);
