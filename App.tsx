@@ -1,18 +1,16 @@
 import { Text, View, Image, StyleSheet } from 'react-native';
 import { Input, Button, ErrorNotification, Colors, Gaps } from './shared';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 export default function App() {
 	const [error, setError] = useState<string | undefined>();
 
 	function alert() {
 		setError('Неверный логин лил пароль');
-		console.log('7777');
 
-		// const t = setTimeout(() => {
-		// 	setError(undefined);
-		// 	clearTimeout(t);
-		// }, 4000);
+		setTimeout(() => {
+			setError(undefined);
+		}, 4000);
 	}
 
 	return (
@@ -23,7 +21,12 @@ export default function App() {
 				<View style={styles.form}>
 					<Input placeholder="email" isPassword={false} />
 					<Input placeholder="password" isPassword={true} />
-					<Button text="Войти" onPressOut={alert} />
+					{useMemo(
+						() => (
+							<Button text="Войти" onPress={alert} />
+						),
+						[],
+					)}
 				</View>
 				<Text style={styles.link}>Восстановить пароль</Text>
 			</View>

@@ -1,11 +1,8 @@
-import { useEffect, useState } from 'react';
 import { ErrorNotificationProps } from './ErrorNotification.props';
 import { Animated, Dimensions, StyleSheet, Text, View } from 'react-native';
 import { Colors, Fonts } from '../tokens';
 
 export function ErrorNotification({ error }: ErrorNotificationProps) {
-	const [isShown, setIsShowm] = useState<boolean>(false);
-
 	const animatedValue = new Animated.Value(-100);
 	const onEnter = () => {
 		Animated.timing(animatedValue, {
@@ -15,21 +12,7 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 		}).start();
 	};
 
-	useEffect(() => {
-		if (!error) {
-			return;
-		}
-		setIsShowm(true);
-
-		const timer = setTimeout(() => {
-			setIsShowm(false);
-		}, 3000);
-		return () => {
-			clearTimeout(timer);
-		};
-	}, [error]);
-
-	if (!isShown) {
+	if (!error) {
 		return <></>;
 	}
 
