@@ -5,12 +5,12 @@ export function Button({ text, ...props }: PressableProps & { text: string }) {
 	const animatedValue = new Animated.Value(0);
 	const color = animatedValue.interpolate({
 		inputRange: [0, 100],
-		outputRange: [Colors.primary_hover, Colors.primary],
+		outputRange: [Colors.primary, Colors.primary_hover],
 	});
 
 	function fadeIn(e: GestureResponderEvent) {
 		Animated.timing(animatedValue, {
-			toValue: 0,
+			toValue: 100,
 			duration: 100,
 			useNativeDriver: true,
 		}).start();
@@ -19,7 +19,7 @@ export function Button({ text, ...props }: PressableProps & { text: string }) {
 
 	function fadeOut(e: GestureResponderEvent) {
 		Animated.timing(animatedValue, {
-			toValue: 100,
+			toValue: 0,
 			duration: 100,
 			useNativeDriver: true,
 		}).start();

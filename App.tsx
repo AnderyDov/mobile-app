@@ -1,29 +1,29 @@
-import { Text, View, Image, StyleSheet, Alert, Platform, ToastAndroid } from 'react-native';
-import { Input, Button } from './shared';
-import { Colors, Gaps } from './shared';
+import { Text, View, Image, StyleSheet } from 'react-native';
+import { Input, Button, ErrorNotification, Colors, Gaps } from './shared';
+import { useState } from 'react';
 
 export default function App() {
+	const [error, setError] = useState<string | undefined>();
+
 	function alert() {
-		Alert.alert('Ошибка', 'Неверный логин или пароль', [
-			{
-				text: 'Хорошо',
-				onPress: () => {},
-				style: 'cancel',
-			},
-		]);
-		if (Platform.OS == 'android') {
-			ToastAndroid.showWithGravity('Неверный пароль', ToastAndroid.SHORT, ToastAndroid.CENTER);
-		}
+		setError('Неверный логин лил пароль');
+		console.log('7777');
+
+		// const t = setTimeout(() => {
+		// 	setError(undefined);
+		// 	clearTimeout(t);
+		// }, 4000);
 	}
 
 	return (
 		<View style={styles.container}>
+			<ErrorNotification error={error} />
 			<View style={styles.content}>
 				<Image style={styles.logo} source={require('./assets/logo.png')} resizeMode="contain" />
 				<View style={styles.form}>
 					<Input placeholder="email" isPassword={false} />
 					<Input placeholder="password" isPassword={true} />
-					<Button text="Войти" onPress={alert} />
+					<Button text="Войти" onPressOut={alert} />
 				</View>
 				<Text style={styles.link}>Восстановить пароль</Text>
 			</View>
