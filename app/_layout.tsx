@@ -1,19 +1,44 @@
-import { Stack } from 'expo-router';
+import { Stack, SplashScreen } from 'expo-router';
 import { Colors } from '../shared';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootRayout() {
-	const insets = useSafeAreaInsets();
+	const [loaded, error] = useFonts({
+		FiraSans: require('../assets/fonts/FiraSans-Regular.ttf'),
+		FiraSansSemiBold: require('../assets/fonts/FiraSans-SemiBold.ttf'),
+	});
+
+	useEffect(() => {
+		if (error) {
+			throw error;
+		}
+	}, [error]);
+
+	useEffect(() => {
+		if (loaded) {
+			SplashScreen.hideAsync();
+		}
+	}, [loaded]);
+
+	if (!loaded) {
+		return null;
+	}
+
 	return (
-		<SafeAreaProvider>
-			<StatusBar style="auto" />
+		<SafeAreaProvider style={style.safe}>
+			<StatusBar style="light" />
 			<Stack
 				screenOptions={{
 					statusBarColor: Colors.violet_dark,
 					contentStyle: {
 						backgroundColor: Colors.violet_dark,
-						paddingTop: insets.top,
+						paddingTop: 30,
 					},
 					headerShown: false,
 				}}
@@ -30,3 +55,10 @@ export default function RootRayout() {
 		</SafeAreaProvider>
 	);
 }
+
+const style = StyleSheet.create({
+	safe: {
+		flexGrow: 1,
+		backgroundColor: Colors.violet_dark,
+	},
+});

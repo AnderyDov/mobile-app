@@ -58,5 +58,6 @@ const styles = StyleSheet.create({
 	},
 	link: {
 		color: Colors.white,
+		fontFamily: 'FiraSans',
 	},
 });

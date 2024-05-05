@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 		fontSize: Fonts.f16,
 		position: 'relative',
 		color: Colors.grey_light,
+		fontFamily: 'FiraSans',
 	},
 	eyeIcon: {
 		position: 'absolute',
