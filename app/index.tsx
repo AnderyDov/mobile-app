@@ -1,8 +1,9 @@
 import { Text, View, Image, StyleSheet } from 'react-native';
-import { Input, Button, ErrorNotification, Colors, Gaps } from './shared';
+import { Input, Button, ErrorNotification, Colors, Gaps } from '../shared';
 import { useState, useMemo } from 'react';
+import { Link } from 'expo-router';
 
-export default function App() {
+export default function Login() {
 	const [error, setError] = useState<string | undefined>();
 
 	function alert() {
@@ -17,7 +18,7 @@ export default function App() {
 		<View style={styles.container}>
 			<ErrorNotification error={error} />
 			<View style={styles.content}>
-				<Image style={styles.logo} source={require('./assets/logo.png')} resizeMode="contain" />
+				<Image style={styles.logo} source={require('../assets/logo.png')} resizeMode="contain" />
 				<View style={styles.form}>
 					<Input placeholder="email" isPassword={false} />
 					<Input placeholder="password" isPassword={true} />
@@ -28,7 +29,9 @@ export default function App() {
 						[],
 					)}
 				</View>
-				<Text style={styles.link}>Восстановить пароль</Text>
+				<Link href={'/restore'}>
+					<Text style={styles.link}>Восстановить пароль</Text>
+				</Link>
 			</View>
 		</View>
 	);
