@@ -1,5 +1,5 @@
 import { ErrorNotificationProps } from './ErrorNotification.props';
-import { Animated, Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Animated, Dimensions, StyleSheet, Text } from 'react-native';
 import { Colors, Fonts } from '../tokens';
 
 export function ErrorNotification({ error }: ErrorNotificationProps) {
@@ -17,7 +17,10 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 	}
 
 	return (
-		<Animated.View style={{ ...styles.error, transform: [{ translateY: animatedValue }] }} onLayout={onEnter}>
+		<Animated.View
+			style={{ ...styles.error, transform: [{ translateY: animatedValue }] }}
+			onLayout={onEnter}
+		>
 			<Text style={styles.errorText}>{error}</Text>
 		</Animated.View>
 	);

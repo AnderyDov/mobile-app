@@ -1,4 +1,11 @@
-import { Pressable, PressableProps, Text, StyleSheet, Animated, GestureResponderEvent } from 'react-native';
+import {
+	Pressable,
+	PressableProps,
+	Text,
+	StyleSheet,
+	Animated,
+	GestureResponderEvent,
+} from 'react-native';
 import { Colors, Radius, Fonts } from '../tokens';
 
 export function Button({ text, ...props }: PressableProps & { text: string }) {
@@ -18,11 +25,7 @@ export function Button({ text, ...props }: PressableProps & { text: string }) {
 	}
 
 	function fadeOut(e: GestureResponderEvent) {
-		Animated.timing(animatedValue, {
-			toValue: 100,
-			duration: 100,
-			useNativeDriver: true,
-		}).start();
+		Animated.timing(animatedValue, { toValue: 100, duration: 100, useNativeDriver: true }).start();
 		props.onPressOut && props.onPressOut(e);
 	}
 

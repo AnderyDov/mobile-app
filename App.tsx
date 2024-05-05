@@ -53,10 +53,6 @@ const styles = StyleSheet.create({
 		gap: Gaps.g16,
 		alignSelf: 'stretch',
 	},
-	input: {
-		backgroundColor: Colors.grey_stroke,
-	},
-
 	link: {
 		color: Colors.white,
 	},

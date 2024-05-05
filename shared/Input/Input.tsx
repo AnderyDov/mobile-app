@@ -16,7 +16,10 @@ export function Input({ isPassword, ...props }: TextInputProps & { isPassword: b
 				{...props}
 			/>
 			{isPassword && (
-				<Pressable onPress={() => setIsPasswordVisible(state => !state)} style={{ ...styles.eyeIcon }}>
+				<Pressable
+					onPress={() => setIsPasswordVisible((state) => !state)}
+					style={{ ...styles.eyeIcon }}
+				>
 					{isPasswordVisible ? <EyeOpen /> : <EyeClosed />}
 				</Pressable>
 			)}
