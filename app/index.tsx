@@ -28,7 +28,8 @@ export default function Login() {
 						[],
 					)}
 				</View>
-				<CustomLink href={'/restores'} text="Восстановить пароль" />
+				<CustomLink href={'/restore'} text="Восстановить пароль" />
+				<CustomLink href={'/courses/typescript'} text="TypeScript" />
 			</View>
 		</View>
 	);

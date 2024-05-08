@@ -15,5 +15,6 @@ const styles = StyleSheet.create({
 	link: {
 		fontSize: Fonts.f16,
 		color: Colors.links,
+		fontFamily: Fonts.regular,
 	},
 });

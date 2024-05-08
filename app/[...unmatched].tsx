@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 	text: {
 		color: Colors.white,
 		fontSize: Fonts.f16,
-		fontFamily: 'FiraSans',
+		fontFamily: Fonts.regular,
 		textAlign: 'center',
 	},
 });
