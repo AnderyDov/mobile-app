@@ -33,6 +33,7 @@
 				}
 			],
 			"expo-router"
-		]
+		],
+		"scheme": "purpleschool"
 	}
 }

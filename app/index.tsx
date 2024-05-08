@@ -1,7 +1,6 @@
-import { Text, View, Image, StyleSheet } from 'react-native';
-import { Input, Button, ErrorNotification, Colors, Gaps } from '../shared';
+import { View, Image, StyleSheet } from 'react-native';
+import { Input, Button, ErrorNotification, Colors, Gaps, CustomLink } from '../shared';
 import { useState, useMemo } from 'react';
-import { Link } from 'expo-router';
 
 export default function Login() {
 	const [error, setError] = useState<string | undefined>();
@@ -29,9 +28,7 @@ export default function Login() {
 						[],
 					)}
 				</View>
-				<Link href={'/restore'}>
-					<Text style={styles.link}>Восстановить пароль</Text>
-				</Link>
+				<CustomLink href={'/restores'} text="Восстановить пароль" />
 			</View>
 		</View>
 	);
@@ -41,7 +38,7 @@ const styles = StyleSheet.create({
 	container: {
 		justifyContent: 'center',
 		flexGrow: 1,
-		backgroundColor: Colors.violet_dark,
+		backgroundColor: Colors.black,
 		padding: 55,
 	},
 
@@ -55,9 +52,5 @@ const styles = StyleSheet.create({
 	form: {
 		gap: Gaps.g16,
 		alignSelf: 'stretch',
-	},
-	link: {
-		color: Colors.white,
-		fontFamily: 'FiraSans',
 	},
 });
