@@ -30,6 +30,7 @@ export default function Login() {
 				</View>
 				<CustomLink href={'/restore'} text="Восстановить пароль" />
 				<CustomLink href={'/courses/typescript'} text="TypeScript" />
+				<CustomLink href="/" text="На главный экран" />
 			</View>
 		</View>
 	);

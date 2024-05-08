@@ -1,13 +1,11 @@
 import { Text, View, StyleSheet } from 'react-native';
 import { Colors, Gaps, CustomLink, Fonts } from '../../shared';
-import { useLocalSearchParams } from 'expo-router';
 
-export default function CoursesPage() {
-	const { alias } = useLocalSearchParams();
+export default function MyCourses() {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>{alias}</Text>
-			<CustomLink href="/" text="На главный экран" />
+			<Text style={styles.text}>My Courses</Text>
+			<CustomLink href="/login" text="На экран login" />
 		</View>
 	);
 }
