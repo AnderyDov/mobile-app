@@ -38,7 +38,7 @@ export default function RootRayout() {
 					statusBarColor: Colors.black,
 					contentStyle: {
 						backgroundColor: Colors.black,
-						paddingTop: 30,
+						paddingTop: 10,
 					},
 					headerShown: false,
 				}}
