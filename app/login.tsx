@@ -1,6 +1,6 @@
 import { View, Image, StyleSheet } from 'react-native';
 import { Input, Button, ErrorNotification, Colors, Gaps, CustomLink } from '../shared';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { loginAtom } from '../entities/auth/model/auth.state';
 import { router } from 'expo-router';
@@ -9,9 +9,7 @@ export default function Login() {
 	const [localError, setLocalError] = useState<string | undefined>();
 	const [email, setEmail] = useState<string>();
 	const [password, setPassword] = useState<string>();
-	const [{ access_token, error }, login] = useAtom(loginAtom);
-
-	const button = useMemo(() => <Button text="Войти" onPress={submit} />, [email, password]);
+	const [{ access_token, isLoading, error }, login] = useAtom(loginAtom);
 
 	function submit() {
 		if (!email) {
@@ -44,7 +42,7 @@ export default function Login() {
 				<View style={styles.form}>
 					<Input placeholder="email" isPassword={false} onChangeText={setEmail} />
 					<Input placeholder="password" isPassword={true} onChangeText={setPassword} />
-					{button}
+					<Button text="Войти" isLoading={isLoading} onPress={submit} />
 				</View>
 				<CustomLink href={'/restore'} text="Восстановить пароль" />
 				<CustomLink href={'/courses/typescript'} text="TypeScript" />
