@@ -1,32 +1,50 @@
 import { View, Image, StyleSheet } from 'react-native';
 import { Input, Button, ErrorNotification, Colors, Gaps, CustomLink } from '../shared';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { loginAtom } from '../entities/auth/model/auth.state';
+import { router } from 'expo-router';
 
 export default function Login() {
-	const [error, setError] = useState<string | undefined>();
+	const [localError, setLocalError] = useState<string | undefined>();
+	const [email, setEmail] = useState<string>();
+	const [password, setPassword] = useState<string>();
+	const [{ access_token, error }, login] = useAtom(loginAtom);
 
-	function alert() {
-		setError('Неверный логин лил пароль');
+	const button = useMemo(() => <Button text="Войти" onPress={submit} />, [email, password]);
 
-		setTimeout(() => {
-			setError(undefined);
-		}, 4000);
+	function submit() {
+		if (!email) {
+			setLocalError('Не введён email');
+			return;
+		}
+		if (!password) {
+			setLocalError('Не введён пароль');
+			return;
+		}
+		login({ email, password });
 	}
+	useEffect(() => {
+		if (access_token) {
+			router.replace('/(app)');
+		}
+	}, [access_token, error]);
+
+	useEffect(() => {
+		if (error) {
+			setLocalError(error);
+		}
+	}, [error]);
 
 	return (
 		<View style={styles.container}>
-			<ErrorNotification error={error} />
+			<ErrorNotification error={localError} />
 			<View style={styles.content}>
 				<Image style={styles.logo} source={require('../assets/logo.png')} resizeMode="contain" />
 				<View style={styles.form}>
-					<Input placeholder="email" isPassword={false} />
-					<Input placeholder="password" isPassword={true} />
-					{useMemo(
-						() => (
-							<Button text="Войти" onPress={alert} />
-						),
-						[],
-					)}
+					<Input placeholder="email" isPassword={false} onChangeText={setEmail} />
+					<Input placeholder="password" isPassword={true} onChangeText={setPassword} />
+					{button}
 				</View>
 				<CustomLink href={'/restore'} text="Восстановить пароль" />
 				<CustomLink href={'/courses/typescript'} text="TypeScript" />
@@ -56,3 +74,10 @@ const styles = StyleSheet.create({
 		alignSelf: 'stretch',
 	},
 });
+
+// {useMemo(
+// 	() => (
+// 		<Button text="Войти" onPress={submit} />
+// 	),
+// 	[],
+// )}

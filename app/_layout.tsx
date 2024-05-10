@@ -59,6 +59,6 @@ export default function RootRayout() {
 const style = StyleSheet.create({
 	safe: {
 		flexGrow: 1,
-		backgroundColor: Colors.violet_dark,
+		backgroundColor: Colors.black,
 	},
 });
