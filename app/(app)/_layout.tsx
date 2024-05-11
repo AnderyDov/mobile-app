@@ -5,7 +5,8 @@ import { StyleSheet } from 'react-native';
 import { Colors, Fonts } from '../../shared';
 import { useAtomValue } from 'jotai';
 import { authAtom } from '../../entities/auth/model/auth.state';
-import { MenuButton } from '../../features/layout/ui/menuButton/menu';
+import { MenuButton } from '../../features/layout/ui/menuButton/MenuButton';
+import { CustomDrawer } from '../../entities/layout/ui/CustomDrawer/CustomDrawer';
 
 export default function AppRayout() {
 	const { access_token } = useAtomValue(authAtom);
@@ -17,6 +18,7 @@ export default function AppRayout() {
 	return (
 		<GestureHandlerRootView style={styles.drawer}>
 			<Drawer
+				drawerContent={(props) => <CustomDrawer {...props} />}
 				screenOptions={({ navigation }) => ({
 					headerStyle: {
 						backgroundColor: Colors.black_light,
@@ -31,8 +33,9 @@ export default function AppRayout() {
 						fontFamily: Fonts.regular,
 						fontSize: Fonts.f20,
 					},
+					headerTitleAlign: 'center',
 					sceneContainerStyle: {
-						backgroundColor: Colors.black_light,
+						backgroundColor: Colors.black,
 					},
 				})}
 			>
