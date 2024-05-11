@@ -38,7 +38,11 @@ export default function Login() {
 		<View style={styles.container}>
 			<ErrorNotification error={localError} />
 			<View style={styles.content}>
-				<Image style={styles.logo} source={require('../assets/logo.png')} resizeMode="contain" />
+				<Image
+					style={styles.logo}
+					source={require('../assets/images/logo.png')}
+					resizeMode="contain"
+				/>
 				<View style={styles.form}>
 					<Input placeholder="email" isPassword={false} onChangeText={setEmail} />
 					<Input placeholder="password" isPassword={true} onChangeText={setPassword} />

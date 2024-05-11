@@ -8,7 +8,7 @@
 		"userInterfaceStyle": "light",
 		"backgroundColor": "#16171D",
 		"splash": {
-			"image": "./assets/splach.png",
+			"image": "./assets/images/splach.png",
 			"resizeMode": "contain",
 			"backgroundColor": "#16171D"
 		},
