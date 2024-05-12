@@ -6,7 +6,7 @@ import { Colors, Fonts } from '../../shared';
 import { useAtomValue } from 'jotai';
 import { authAtom } from '../../entities/auth/model/auth.state';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
-import { CustomDrawer } from '../../entities/layout/ui/CustomDrawer/CustomDrawer';
+import { CustomDrawer } from '../../widget/layout/ui/CustomDrawer/CustomDrawer';
 
 export default function AppRayout() {
 	const { access_token } = useAtomValue(authAtom);

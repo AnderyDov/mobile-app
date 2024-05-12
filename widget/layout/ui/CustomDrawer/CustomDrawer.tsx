@@ -3,11 +3,11 @@ import { View, StyleSheet, Image } from 'react-native';
 import { Colors, CustomLink } from '../../../../shared';
 import { CloseDrawer } from '../../../../features/layout/ui/CloseDrawer/CloseDrawer';
 import { useSetAtom, useAtom } from 'jotai';
-import { logoutAtom } from '../../../auth/model/auth.state';
-import { loadProfileAtom } from '../../../user/model/user.state';
+import { logoutAtom } from '../../../../entities/auth/model/auth.state';
+import { loadProfileAtom } from '../../../../entities/user/model/user.state';
 import { useEffect } from 'react';
-import { UserMenu } from '../../../user/ui/UserMenu/UserMenu';
-import { MenuItem } from '../MenuItem/MenuItem';
+import { UserMenu } from '../../../../entities/user/ui/UserMenu/UserMenu';
+import { MenuItem } from '../../../../entities/layout/ui/MenuItem/MenuItem';
 import CoursesIcon from '../../../../assets/menu/courses';
 import ProfileIcon from '../../../../assets/menu/profile';
 
