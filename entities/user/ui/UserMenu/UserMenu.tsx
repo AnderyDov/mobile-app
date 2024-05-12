@@ -23,11 +23,12 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		gap: Gaps.g8,
 		marginTop: 30,
+		marginBottom: 40,
 	},
 	image: {
-		width: 60,
-		height: 60,
-		borderRadius: 30,
+		width: 70,
+		height: 70,
+		borderRadius: 35,
 	},
 	name: {
 		fontSize: Fonts.f16,

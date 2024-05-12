@@ -1,10 +1,10 @@
 import { Text, View, StyleSheet } from 'react-native';
 import { Colors, Gaps, Fonts } from '../../shared';
 
-export default function MyCourses() {
+export default function Profile() {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>My Courses</Text>
+			<Text style={styles.text}>Profile</Text>
 		</View>
 	);
 }

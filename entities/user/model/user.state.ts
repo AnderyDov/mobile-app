@@ -28,7 +28,6 @@ export const loadProfileAtom = atom(
 					Authorization: `Bearer ${access_token}`,
 				},
 			});
-			console.log('PROFILE', data);
 			set(profileAtom, {
 				isLoading: false,
 				profile: data.profile,
