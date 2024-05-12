@@ -8,13 +8,37 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 import UploadIcon from '../../assets/icons/upload';
 import { View } from 'react-native';
 import { Colors, Fonts, Gaps, Radius } from '../tokens';
+import FormData from 'form-data';
+import axios, { AxiosError } from 'axios';
+import { FILE_API } from '../api';
+import { UoloadResponse } from './imageUploaderInterface';
 
 interface ImagesUploaderProps {
-	onupload: (uri: string) => void;
+	onUpload: (uri: string) => void;
+	onError: (error: string) => void;
 }
 
-export function ImageUploader({ onupload }: ImagesUploaderProps) {
+export function ImageUploader({ onUpload, onError }: ImagesUploaderProps) {
 	const [libraryPermissions, requestlibraryPermissions] = useMediaLibraryPermissions();
+
+	async function upload() {
+		const permissionGranted = await varifyMediaPermissions();
+		if (!permissionGranted) {
+			onError('Недостаточно прав');
+			return;
+		}
+		const asset = await pickImage();
+		if (!asset) {
+			onError('Не выбранно изображение');
+			return;
+		}
+		const uplodaedUrl = await uploadToServer(asset.uri, asset.fileName ?? 'photo.jpeg');
+		if (!uplodaedUrl) {
+			onError('Не удалось загрузить изображения');
+			return;
+		}
+		onUpload(uplodaedUrl);
+	}
 
 	async function varifyMediaPermissions() {
 		if (libraryPermissions?.status === PermissionStatus.UNDETERMINED) {
@@ -28,11 +52,7 @@ export function ImageUploader({ onupload }: ImagesUploaderProps) {
 		return true;
 	}
 
-	async function pickimage() {
-		const permissionGranted = await varifyMediaPermissions();
-		if (!permissionGranted) {
-			return;
-		}
+	async function pickImage() {
 		const result = await launchImageLibraryAsync({
 			mediaTypes: MediaTypeOptions.Images,
 			allowsEditing: true,
@@ -40,13 +60,41 @@ export function ImageUploader({ onupload }: ImagesUploaderProps) {
 			quality: 0.5,
 		});
 		if (!result.assets) {
-			return;
+			return null;
 		}
-		console.log(result);
-		onupload(result.assets[0].uri);
+		return result.assets[0];
 	}
+
+	async function uploadToServer(uri: string, name: string) {
+		const formData = new FormData();
+		// console.log(uri, '\n', name);
+
+		formData.append('files', {
+			uri,
+			name,
+			type: 'image/jpeg',
+		});
+
+		try {
+			const { data } = await axios.post<UoloadResponse>(FILE_API.uploadImage, formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+			});
+			console.log(data.urls.original);
+
+			return data.urls.original;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				console.log(error);
+				return null;
+			}
+			return null;
+		}
+	}
+
 	return (
-		<Pressable onPress={pickimage}>
+		<Pressable onPress={upload}>
 			<View style={styles.container}>
 				<UploadIcon style={styles.icon} />
 				<Text style={styles.text}>Загрузить изображенеи</Text>
