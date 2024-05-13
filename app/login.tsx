@@ -1,15 +1,19 @@
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Dimensions } from 'react-native';
 import { Input, Button, ErrorNotification, Colors, Gaps, CustomLink } from '../shared';
 import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { loginAtom } from '../entities/auth/model/auth.state';
 import { router } from 'expo-router';
+import { useScreenOrientation } from '../shared/hooks';
+import { Orientation } from 'expo-screen-orientation';
 
 export default function Login() {
 	const [localError, setLocalError] = useState<string | undefined>();
 	const [email, setEmail] = useState<string>();
 	const [password, setPassword] = useState<string>();
 	const [{ access_token, isLoading, error }, login] = useAtom(loginAtom);
+	const orientation = useScreenOrientation();
+	console.log(orientation);
 
 	function submit() {
 		if (!email) {
@@ -44,8 +48,35 @@ export default function Login() {
 					resizeMode="contain"
 				/>
 				<View style={styles.form}>
-					<Input placeholder="email" isPassword={false} onChangeText={setEmail} />
-					<Input placeholder="password" isPassword={true} onChangeText={setPassword} />
+					<View
+						style={{
+							...styles.inputs,
+							flexDirection: orientation === Orientation.PORTRAIT_UP ? 'column' : 'row',
+						}}
+					>
+						<Input
+							style={{
+								width:
+									orientation === Orientation.PORTRAIT_UP
+										? 'auto'
+										: Dimensions.get('window').width / 2 - 16 - 48,
+							}}
+							placeholder="email"
+							isPassword={false}
+							onChangeText={setEmail}
+						/>
+						<Input
+							style={{
+								width:
+									orientation === Orientation.PORTRAIT_UP
+										? 'auto'
+										: Dimensions.get('window').width / 2 - 16 - 48,
+							}}
+							placeholder="password"
+							isPassword={true}
+							onChangeText={setPassword}
+						/>
+					</View>
 					<Button text="Войти" isLoading={isLoading} onPress={submit} />
 				</View>
 				<CustomLink href={'/restore'} text="Восстановить пароль" />
@@ -59,6 +90,7 @@ export default function Login() {
 const styles = StyleSheet.create({
 	container: {
 		justifyContent: 'center',
+		alignItems: 'center',
 		flexGrow: 1,
 		backgroundColor: Colors.black,
 		padding: 55,
@@ -74,6 +106,9 @@ const styles = StyleSheet.create({
 	form: {
 		gap: Gaps.g16,
 		alignSelf: 'stretch',
+	},
+	inputs: {
+		gap: Gaps.g16,
 	},
 });
 

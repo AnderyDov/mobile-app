@@ -67,7 +67,6 @@ export function ImageUploader({ onUpload, onError }: ImagesUploaderProps) {
 
 	async function uploadToServer(uri: string, name: string) {
 		const formData = new FormData();
-		// console.log(uri, '\n', name);
 
 		formData.append('files', {
 			uri,
@@ -81,7 +80,6 @@ export function ImageUploader({ onUpload, onError }: ImagesUploaderProps) {
 					'Content-Type': 'multipart/form-data',
 				},
 			});
-			console.log(data.urls.original);
 
 			return data.urls.original;
 		} catch (error) {

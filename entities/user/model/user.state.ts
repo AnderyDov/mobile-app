@@ -35,7 +35,6 @@ export const updateProfileAtom = atom(
 				error: null,
 			});
 		} catch (err) {
-			console.log('ERROR');
 			if (err instanceof AxiosError) {
 				set(profileAtom, {
 					isLoading: false,
@@ -70,7 +69,6 @@ export const loadProfileAtom = atom(
 				error: null,
 			});
 		} catch (err) {
-			console.log('ERROR');
 			if (err instanceof AxiosError) {
 				set(profileAtom, {
 					isLoading: false,

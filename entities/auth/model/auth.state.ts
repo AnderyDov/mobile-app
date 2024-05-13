@@ -31,7 +31,6 @@ export const loginAtom = atom(
 				email,
 				password,
 			});
-			console.log('!!!', data);
 			set(authAtom, {
 				isLoading: false,
 				access_token: data.access_token,
