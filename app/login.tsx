@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, Dimensions } from 'react-native';
+import { View, Image, StyleSheet, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
 import { Input, Button, ErrorNotification, Colors, Gaps, CustomLink } from '../shared';
 import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
@@ -13,7 +13,6 @@ export default function Login() {
 	const [password, setPassword] = useState<string>();
 	const [{ access_token, isLoading, error }, login] = useAtom(loginAtom);
 	const orientation = useScreenOrientation();
-	console.log(orientation);
 
 	function submit() {
 		if (!email) {
@@ -41,7 +40,10 @@ export default function Login() {
 	return (
 		<View style={styles.container}>
 			<ErrorNotification error={localError} />
-			<View style={styles.content}>
+			<KeyboardAvoidingView
+				behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+				style={styles.content}
+			>
 				<Image
 					style={styles.logo}
 					source={require('../assets/images/logo.png')}
@@ -82,7 +84,7 @@ export default function Login() {
 				<CustomLink href={'/restore'} text="Восстановить пароль" />
 				<CustomLink href={'/courses/typescript'} text="TypeScript" />
 				<CustomLink href="/" text="На главный экран" />
-			</View>
+			</KeyboardAvoidingView>
 		</View>
 	);
 }
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	logo: {
-		width: 220,
+		width: Platform.select({ ios: 300, android: 220 }),
 	},
 	form: {
 		gap: Gaps.g16,
@@ -111,10 +113,3 @@ const styles = StyleSheet.create({
 		gap: Gaps.g16,
 	},
 });
-
-// {useMemo(
-// 	() => (
-// 		<Button text="Войти" onPress={submit} />
-// 	),
-// 	[],
-// )}
