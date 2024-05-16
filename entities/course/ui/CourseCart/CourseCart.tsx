@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
 	},
 	image: {
 		height: 168,
+		borderRadius: Radius.r10,
+		borderBottomLeftRadius: 0,
+		borderBottomRightRadius: 0,
 	},
 	head: {
 		paddingHorizontal: 24,
@@ -56,6 +59,7 @@ const styles = StyleSheet.create({
 		fontFamily: Fonts.semibold,
 		fontSize: Fonts.f20,
 		color: Colors.white,
+		marginBottom: 12,
 	},
 	chips: {
 		flexDirection: 'row',
@@ -70,5 +74,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 24,
 		paddingVertical: 20,
 		backgroundColor: Colors.violet_dark,
+		borderBottomLeftRadius: Radius.r10,
+		borderBottomRightRadius: Radius.r10,
 	},
 });
