@@ -13,6 +13,7 @@ export const Colors = {
 	grey: '#AFB2BF',
 	grey_stroke: '#4D5064',
 	grey_light: '#DAD9DE',
+	border: '#4D5064',
 };
 
 export const Gaps = {
@@ -24,6 +25,7 @@ export const Gaps = {
 
 export const Radius = {
 	r10: 10,
+	r17: 17,
 };
 
 export const Fonts = {

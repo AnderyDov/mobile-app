@@ -1,11 +1,12 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { Colors, Gaps, Fonts } from '../../shared';
+import { View, StyleSheet } from 'react-native';
+import { Colors, Gaps } from '../../shared';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
 import { useEffect } from 'react';
+import { CourseCart } from '../../entities/course/ui/CourseCart/CourseCart';
 
 export default function MyCourses() {
-	const { isLoading, error, courses } = useAtomValue(courseAtom);
+	const { courses } = useAtomValue(courseAtom);
 	const loadCourses = useSetAtom(loadCourseAtom);
 
 	useEffect(() => {
@@ -16,13 +17,23 @@ export default function MyCourses() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>My Courses</Text>
 			{courses.length > 0 &&
 				courses.map((el, i) => {
 					return (
-						<Text style={styles.text} key={i}>
-							{el.title}
-						</Text>
+						<CourseCart
+							id={el.id}
+							title={el.title}
+							shortTitle={el.shortTitle}
+							image={el.image}
+							alias={el.alias}
+							length={el.length}
+							avgRating={el.avgRating}
+							price={el.price}
+							courseOnDirection={el.courseOnDirection}
+							progress={el.progress}
+							tariffs={el.tariffs}
+							key={i}
+						/>
 					);
 				})}
 		</View>
@@ -32,13 +43,9 @@ export default function MyCourses() {
 const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		gap: Gaps.g16,
+		gap: Gaps.g20,
 		flexGrow: 1,
 		backgroundColor: Colors.black,
-		padding: 55,
-	},
-	text: {
-		color: Colors.white,
-		fontSize: Fonts.f18,
+		padding: 20,
 	},
 });
