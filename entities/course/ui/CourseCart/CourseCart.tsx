@@ -4,24 +4,19 @@ import { Button, Colors, Fonts, Radius } from '../../../../shared';
 import { Chip } from '../../../../shared/Chip/Chip';
 
 export function CourseCart({
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	id,
 	shortTitle,
 	image,
 	title,
-	alias,
-	length,
-	avgRating,
-	price,
 	courseOnDirection,
-	progress,
-	tariffs,
 	...props
 }: StudentCourseDescription) {
 	return (
 		<View style={styles.cart} {...props}>
 			<Image source={{ uri: image }} style={styles.image} />
 			<View style={styles.head}>
-				<Text style={styles.title}>{title}</Text>
+				<Text style={styles.title}>{shortTitle}</Text>
 				<View style={styles.chips}>
 					{courseOnDirection.length > 0 &&
 						courseOnDirection.map((el, i) => {
@@ -43,6 +38,8 @@ const styles = StyleSheet.create({
 		// height: 428,
 		backgroundColor: Colors.black_light,
 		borderRadius: Radius.r10,
+		alignSelf: 'center',
+		marginBottom: 20,
 	},
 	image: {
 		height: 168,

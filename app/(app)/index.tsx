@@ -1,9 +1,9 @@
-import { View, StyleSheet } from 'react-native';
-import { Colors, Gaps } from '../../shared';
+import { FlatList } from 'react-native';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
 import { useEffect } from 'react';
 import { CourseCart } from '../../entities/course/ui/CourseCart/CourseCart';
+import { StudentCourseDescription } from '../../entities/course/model/course.model';
 
 export default function MyCourses() {
 	const { courses } = useAtomValue(courseAtom);
@@ -15,37 +15,45 @@ export default function MyCourses() {
 
 	console.log('COURSES', courses);
 
-	return (
-		<View style={styles.container}>
-			{courses.length > 0 &&
-				courses.map((el, i) => {
-					return (
-						<CourseCart
-							id={el.id}
-							title={el.title}
-							shortTitle={el.shortTitle}
-							image={el.image}
-							alias={el.alias}
-							length={el.length}
-							avgRating={el.avgRating}
-							price={el.price}
-							courseOnDirection={el.courseOnDirection}
-							progress={el.progress}
-							tariffs={el.tariffs}
-							key={i}
-						/>
-					);
-				})}
-		</View>
-	);
-}
+	function renderCourse({ item }: { item: StudentCourseDescription }) {
+		return <CourseCart {...item} />;
+	}
 
-const styles = StyleSheet.create({
-	container: {
-		alignItems: 'center',
-		gap: Gaps.g20,
-		flexGrow: 1,
-		backgroundColor: Colors.black,
-		padding: 20,
-	},
-});
+	return (
+		<>
+			{courses.length > 0 && (
+				<FlatList
+					data={courses}
+					keyExtractor={(item) => item.id.toString()}
+					renderItem={renderCourse}
+				/>
+			)}
+		</>
+	);
+
+	// return (
+	// 	<ScrollView>
+	// 		<View style={styles.container}>
+	// 			{courses.length > 0 &&
+	// 				courses.map((el, i) => {
+	// 					return (
+	// 						<CourseCart
+	// 							id={el.id}
+	// 							title={el.shortTitle}
+	// 							shortTitle={el.shortTitle}
+	// 							image={el.image}
+	// 							alias={el.alias}
+	// 							length={el.length}
+	// 							avgRating={el.avgRating}
+	// 							price={el.price}
+	// 							courseOnDirection={el.courseOnDirection}
+	// 							progress={el.progress}
+	// 							tariffs={el.tariffs}
+	// 							key={i}
+	// 						/>
+	// 					);
+	// 				})}
+	// 		</View>
+	// 	</ScrollView>
+	// );
+}
